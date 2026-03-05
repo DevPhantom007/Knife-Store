@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Zlatmax - Магазин ножей</title>
+  </head>
+  <body>
+    <!-- ==== TOP HEADER ==== -->
+    <div class="top-header">
+      <button class="burger-btn" id="burgerBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#about" data-i18n="about">О нас</a></li>
+          <li><a href="#payment" data-i18n="payment">Оплата и доставка</a></li>
+          <li><a href="#news" data-i18n="news">Новости</a></li>
+          <li><a href="#contacts" data-i18n="contacts">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="language-selector">
+        <i class="fa-solid fa-globe"></i>
+        <select id="languageSelect" class="language-select">
+          <option value="ru" selected>РУС</option>
+          <option value="en">ENG</option>
+          <option value="hy">ՀԱՅ</option>
+        </select>
+      </div>
+
+      <div class="login" id="openLoginModal">
+        <i class="fa-solid fa-user"></i>
+        <a href="#" data-i18n="personal_cabinet">Личный кабинет</a>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#about" data-i18n="about">О нас</a></li>
+        <li><a href="#payment" data-i18n="payment">Оплата и доставка</a></li>
+        <li><a href="#news" data-i18n="news">Новости</a></li>
+        <li><a href="#contacts" data-i18n="contacts">Контакты</a></li>
+      </ul>
+      <button class="mobile-menu-close" id="closeMobileMenu">&times;</button>
+    </div>
+
+    <!-- ==== LOGIN MODAL ==== -->
+    <div class="modal" id="loginModal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+
+        <div class="form-container active" id="loginForm">
+          <h2 data-i18n="login_title">Вход в личный кабинет</h2>
+          <form id="loginFormElement">
+            <div class="form-group">
+              <label for="email" data-i18n="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="ваш@email.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="password" data-i18n="password">Пароль</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Введите пароль"
+                required
+              />
+            </div>
+            <div class="form-options">
+              <label class="remember">
+                <input type="checkbox" id="remember" />
+                <span data-i18n="remember_me">Запомнить меня</span>
+              </label>
+              <a
+                href="#reset-password"
+                class="forgot-password"
+                data-i18n="forgot_password"
+                >Забыли пароль?</a
+              >
+            </div>
+            <button type="submit" class="btn-login" data-i18n="login_button">
+              Войти
+            </button>
+          </form>
+          <div class="form-footer">
+            <p>
+              <span data-i18n="no_account">Нет аккаунта?</span>
+              <a
+                href="#"
+                class="switch-form"
+                data-form="register"
+                data-i18n="register_link"
+                >Зарегистрироваться</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="form-container" id="registerForm">
+          <h2 data-i18n="register_title">Регистрация</h2>
+          <form id="registerFormElement">
+            <div class="form-group">
+              <label for="regName" data-i18n="name">Имя</label>
+              <input type="text" id="regName" placeholder="Ваше имя" required />
+            </div>
+            <div class="form-group">
+              <label for="regEmail" data-i18n="email">Email</label>
+              <input
+                type="email"
+                id="regEmail"
+                placeholder="ваш@email.com"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="regPassword" data-i18n="password">Пароль</label>
+              <input
+                type="password"
+                id="regPassword"
+                placeholder="Не менее 6 символов"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="regConfirmPassword" data-i18n="confirm_password"
+                >Повторите пароль</label
+              >
+              <input
+                type="password"
+                id="regConfirmPassword"
+                placeholder="Повторите пароль"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="terms">
+                <input type="checkbox" id="terms" required />
+                <span data-i18n="agree_terms"
+                  >Я согласен с
+                  <a href="/terms" class="terms-link">условиями</a></span
+                >
+              </label>
+            </div>
+            <button
+              type="submit"
+              class="btn-register"
+              data-i18n="register_button"
+            >
+              Зарегистрироваться
+            </button>
+          </form>
+          <div class="form-footer">
+            <p>
+              <span data-i18n="have_account">Уже есть аккаунт?</span>
+              <a
+                href="#"
+                class="switch-form"
+                data-form="login"
+                data-i18n="login_link"
+                >Войти</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==== ORDER CALL MODAL ==== -->
+    <div class="modal" id="orderCallModal">
+      <div class="modal-content">
+        <span class="close-modal call-close">&times;</span>
+
+        <div class="form-container active" id="callForm">
+          <h2 data-i18n="order_call_title">Заказать звонок</h2>
+          <form id="callFormElement">
+            <div class="form-group">
+              <label for="callName" data-i18n="your_name">Ваше имя</label>
+              <input
+                type="text"
+                id="callName"
+                placeholder="Иванов Иван"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="callPhone" data-i18n="phone_number"
+                >Номер телефона</label
+              >
+              <input
+                type="tel"
+                id="callPhone"
+                placeholder="+7 (___) ___-__-__"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="callTime" data-i18n="convenient_time"
+                >Удобное время для звонка</label
+              >
+              <select id="callTime">
+                <option value="" data-i18n="select_time">Выберите время</option>
+                <option value="9-12">9:00 - 12:00</option>
+                <option value="12-15">12:00 - 15:00</option>
+                <option value="15-18">15:00 - 18:00</option>
+                <option value="18-21">18:00 - 21:00</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="callComment" data-i18n="comment_optional"
+                >Комментарий (необязательно)</label
+              >
+              <textarea
+                id="callComment"
+                rows="3"
+                placeholder="Укажите тему разговора или интересующий вас товар"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label class="terms">
+                <input type="checkbox" id="callTerms" required />
+                <span data-i18n="privacy_agreement"
+                  >Я согласен на обработку персональных данных</span
+                >
+              </label>
+            </div>
+            <button
+              type="submit"
+              class="btn-submit-call"
+              data-i18n="order_call_button"
+            >
+              Заказать звонок
+            </button>
+          </form>
+          <div class="call-info">
+            <p data-i18n="call_info">
+              Наш менеджер свяжется с вами в указанное время. Если вы заняты, мы
+              перезвоним позже.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==== CART MODAL ==== -->
+    <div class="modal" id="cartModal">
+      <div class="modal-content cart-modal-content">
+        <span class="close-modal cart-close">&times;</span>
+
+        <div class="cart-modal-header">
+          <h2>
+            <i class="fas fa-shopping-cart"></i>
+            <span data-i18n="your_cart">Ваша корзина</span>
+          </h2>
+        </div>
+
+        <div class="cart-items-container" id="cartItems">
+          <div class="empty-cart-message">
+            <i class="fas fa-shopping-basket"></i>
+            <p data-i18n="cart_empty">Ваша корзина пуста</p>
+          </div>
+        </div>
+
+        <div class="cart-summary">
+          <div class="cart-total">
+            <span data-i18n="total">Итого:</span>
+            <span class="total-price" id="cartTotalPrice">0 ₽</span>
+          </div>
+
+          <div class="cart-actions">
+            <button
+              class="btn-checkout single-checkout-btn"
+              data-i18n="checkout"
+            >
+              Оформить заказ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==== HEADER ==== -->
+    <header>
+      <div class="logo">
+        <h1>ZLATMAX</h1>
+      </div>
+
+      <div class="search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" placeholder="Поиск ножей..." />
+      </div>
+
+      <div class="header-info">
+        <div class="place">
+          <i class="fa-solid fa-map-pin"></i>
+          <p data-i18n="moscow">Москва</p>
+        </div>
+        <div class="phone">
+          <p>1-234-567-89-89</p>
+          <a
+            href="#"
+            class="call-link"
+            id="openCallModal"
+            data-i18n="order_call"
+            >Заказать звонок</a
+          >
+        </div>
+        <div class="cart" id="openCartModal">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="cart-count">0</span>
+          <a href="#checkout" class="checkout-btn" data-i18n="checkout"
+            >Оформить заказ</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- ==== BOTTOM HEADER ==== -->
+    <nav class="bottom-header">
+      <a href="#catalog" class="active" data-i18n="catalog_knives"
+        >Каталог ножей</a
+      >
+      <a href="#bladed-weapons" data-i18n="bladed_weapons">Клинковое оружие</a>
+      <a href="#armytek" data-i18n="armytek_flashlight">Фонарик ARMYTEK</a>
+      <a href="#accessories" data-i18n="related_products"
+        >Сопутствующие товары</a
+      >
+    </nav>
+
+    <!-- ==== BANNER ==== -->
+    <section class="banner">
+      <div class="left-side">
+        <h2 data-i18n="banner_title">
+          Интернет магазин сертифицированных <span>златоустовских ножей</span>
+        </h2>
+        <p data-i18n="banner_text">
+          Добро пожаловать на официальный сайт «ЗЛАТМАКС»! В нашем магазине
+          представлен наиболее широкий выбор Златоустовских ножей от
+          Златоустовских Оружейных Фабрик и компаний, мы являемся официальными
+          поставщиками.
+        </p>
+        <button class="more-btn" data-i18n="details">Подробнее</button>
+      </div>
+      <div class="right-side">
+        <img src="banner/banner.png" alt="Нож" />
+      </div>
+      <div class="features">
+        <div class="feature-item">
+          <i class="fa-solid fa-circle-check"></i>
+          <p data-i18n="feature1">Гарантия 100% возврата денежных средств</p>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-truck"></i>
+          <p data-i18n="feature2">
+            Доставка по России, Казахстану и Белоруссии
+          </p>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <p data-i18n="feature3">Оформление заказа без регистрации</p>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-percent"></i>
+          <p data-i18n="feature4">Скидки постоянным покупателям</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==== CATALOG ==== -->
+    <div class="catalog" id="catalog">
+      <div class="container">
+        <div class="box">
+          <div class="box-info">
+            <h2>Каталог ножей</h2>
+            <li>Разделочные</li>
+            <li>Туристические</li>
+            <li>Охотничьи</li>
+          </div>
+          <div class="box-image">
+            <img src="box/1.png" alt="" />
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-info">
+            <h2>Среднеклинковое оружие</h2>
+            <li>Разделочные</li>
+            <li>Туристические</li>
+            <li>Охотничьи</li>
+          </div>
+          <div class="box-image">
+            <img src="box/2.png" alt="" />
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-info">
+            <h2>Длинноклинковое оружие</h2>
+            <li>Разделочные</li>
+            <li>Туристические</li>
+            <li>Охотничьи</li>
+          </div>
+          <div class="box-image">
+            <img src="box/3.png" alt="" />
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-info">
+            <h2>Сувенирные изделия</h2>
+            <li>Разделочные</li>
+            <li>Туристические</li>
+            <li>Охотничьи</li>
+          </div>
+          <div class="box-image">
+            <img src="box/4.png" alt="" />
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-info">
+            <h2>Сопутствующие товары</h2>
+            <li>Разделочные</li>
+            <li>Туристические</li>
+            <li>Охотничьи</li>
+          </div>
+          <div class="box-image">
+            <img src="box/5.png" alt="" />
+          </div>
+        </div>
+        <div class="box">
+          <div class="box-info">
+            <h2>Ножевая мастерская</h2>
+            <li>Разделочные</li>
+            <li>Туристические</li>
+            <li>Охотничьи</li>
+          </div>
+          <div class="box-image">
+            <img src="box/6.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==== HITS SECTION ==== -->
+    <section class="hits-section">
+      <div class="hits-header">
+        <h1 data-i18n="hits_title">Хиты продаж</h1>
+        <a href="#full-catalog" class="catalog-link" data-i18n="go_to_catalog"
+          >Перейти в каталог →</a
+        >
+      </div>
+
+      <div class="products-grid" id="productsGrid">
+        <!-- Product 1 -->
+        <div class="product-card" data-id="1">
+          <div class="product-badge">Хит</div>
+          <div class="product-image">
+            <img src="products/pr1.jpg" alt="Охотничий нож 'Медведь'" />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-i18n="product1_name">
+              Охотничий нож "Медведь"
+            </h3>
+            <div class="product-specs">
+              <span class="spec-size" data-i18n="product1_size"
+                >Длина: 28 см</span
+              >
+              <span class="spec-reviews">Отзывы: 24</span>
+            </div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="rating-value">4.5</span>
+            </div>
+            <div class="product-price-row">
+              <div class="price">
+                <span class="current-price">4 500 ₽</span>
+                <span class="old-price">5 200 ₽</span>
+              </div>
+              <button class="wishlist-btn" data-id="1">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <button class="add-to-cart" data-id="1" data-i18n="add_to_cart">
+              <i class="fas fa-cart-plus"></i> В корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-id="2">
+          <div class="product-badge">Хит</div>
+          <div class="product-image">
+            <img src="products/pr2.webp" alt="Туристический нож 'Скаут'" />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-i18n="product2_name">
+              Туристический нож "Скаут"
+            </h3>
+            <div class="product-specs">
+              <span class="spec-size" data-i18n="product2_size"
+                >Длина: 22 см</span
+              >
+              <span class="spec-reviews">Отзывы: 18</span>
+            </div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-value">4.0</span>
+            </div>
+            <div class="product-price-row">
+              <div class="price">
+                <span class="current-price">3 200 ₽</span>
+              </div>
+              <button class="wishlist-btn" data-id="2">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <button class="add-to-cart" data-id="2" data-i18n="add_to_cart">
+              <i class="fas fa-cart-plus"></i> В корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-id="3">
+          <div class="product-badge">Хит</div>
+          <div class="product-image">
+            <img src="products/pr3.jpg" alt="Кухонный нож 'Шеф'" />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-i18n="product3_name">
+              Кухонный нож "Шеф"
+            </h3>
+            <div class="product-specs">
+              <span class="spec-size" data-i18n="product3_size"
+                >Длина: 20 см</span
+              >
+              <span class="spec-reviews">Отзывы: 32</span>
+            </div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-value">5.0</span>
+            </div>
+            <div class="product-price-row">
+              <div class="price">
+                <span class="current-price">2 800 ₽</span>
+                <span class="old-price">3 500 ₽</span>
+              </div>
+              <button class="wishlist-btn" data-id="3">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <button class="add-to-cart" data-id="3" data-i18n="add_to_cart">
+              <i class="fas fa-cart-plus"></i> В корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card" data-id="4">
+          <div class="product-badge">Хит</div>
+          <div class="product-image">
+            <img src="products/pr4.png" alt="Складной нож 'Компакт'" />
+          </div>
+          <div class="product-info">
+            <h3 class="product-name" data-i18n="product4_name">
+              Складной нож "Компакт"
+            </h3>
+            <div class="product-specs">
+              <span class="spec-size" data-i18n="product4_size"
+                >Длина: 15 см</span
+              >
+              <span class="spec-reviews">Отзывы: 15</span>
+            </div>
+            <div class="product-rating">
+              <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="rating-value">4.5</span>
+            </div>
+            <div class="product-price-row">
+              <div class="price">
+                <span class="current-price">1 900 ₽</span>
+              </div>
+              <button class="wishlist-btn" data-id="4">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <button class="add-to-cart" data-id="4" data-i18n="add_to_cart">
+              <i class="fas fa-cart-plus"></i> В корзину
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==== OUR ARTICLES ==== -->
+    <section class="articles" id="news">
+      <div class="article-title">
+        <h1 data-i18n="our_articles">Наши статьи</h1>
+      </div>
+      <div class="article-box">
+        <div class="article-card">
+          <img src="articles/a1.jpg" alt="" />
+          <h5 data-i18n="article1_title">Все о ножах: как правильно выбрать</h5>
+          <h6>24.07.2018</h6>
+        </div>
+        <div class="article-card">
+          <img src="articles/a2.jpg" alt="" />
+          <h5 data-i18n="article2_title">Как правильно выбрать фонарь</h5>
+          <h6>24.07.2018</h6>
+        </div>
+        <div class="article-card">
+          <img src="articles/a3.jpg" alt="" />
+          <h5 data-i18n="article3_title">Кухонные ножи для хозяек</h5>
+          <h6>24.07.2018</h6>
+        </div>
+        <div class="article-card">
+          <img src="articles/a4.jpg" alt="" />
+          <h5 data-i18n="article4_title">Туристические ножи для походов</h5>
+          <h6>24.07.2018</h6>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==== LIGHTS ==== -->
+    <section class="lights" id="armytek">
+      <div class="container">
+        <div class="left-card">
+          <div class="about">
+            <h4 data-i18n="lights1_title">Тактические фонари</h4>
+            <p data-i18n="lights1_text">
+              Высококачественные тактические фонари для профессионального
+              использования. Надежность и мощность в каждой модели.
+            </p>
+            <button data-i18n="details">Подробнее</button>
+          </div>
+          <div class="light-image">
+            <img src="light/l1.png" alt="Тактический фонарь" />
+          </div>
+        </div>
+
+        <div class="right-card">
+          <div class="about">
+            <h4 data-i18n="lights2_title">Походные мультифонари</h4>
+            <p data-i18n="lights2_text">
+              Универсальные мультифункциональные фонари для походов и активного
+              отдыха. Компактность и функциональность.
+            </p>
+            <button data-i18n="details">Подробнее</button>
+          </div>
+          <div class="light-image">
+            <img src="light/l2.png" alt="Походный фонарь" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==== LIGHTS PRODUCTS ==== -->
+    <section class="lights-products">
+      <div class="lights-header">
+        <h1 data-i18n="lights_products_title">Фонари ARMYTEK</h1>
+        <a
+          href="#flashlights-catalog"
+          class="lights-catalog-link"
+          data-i18n="go_to_catalog"
+        >
+          Смотреть все фонари →
+        </a>
+      </div>
+
+      <div class="lights-products-grid">
+        <!-- Product 1 -->
+        <div class="lights-product-card" data-id="101">
+          <div class="lights-product-badge">Новинка</div>
+          <div class="lights-product-image">
+            <img src="flash/f1.webp" alt="Тактический фонарь Predator Pro" />
+          </div>
+          <div class="lights-product-info">
+            <h3 class="lights-product-name" data-i18n="lights_product1_name">
+              ARMYTEK Predator Pro
+            </h3>
+            <div class="lights-product-specs">
+              <span class="lights-spec-power" data-i18n="lights_product1_power">
+                Мощность: 1650 люмен
+              </span>
+              <span class="lights-spec-reviews">Отзывы: 42</span>
+            </div>
+            <div class="lights-product-rating">
+              <div class="lights-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="lights-rating-value">4.7</span>
+            </div>
+            <div class="lights-product-price-row">
+              <div class="lights-price">
+                <span class="lights-current-price">8 900 ₽</span>
+                <span class="lights-old-price">10 200 ₽</span>
+              </div>
+              <button class="lights-wishlist-btn" data-id="101">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <button
+              class="lights-add-to-cart"
+              data-id="101"
+              data-i18n="add_to_cart"
+            >
+              <i class="fas fa-cart-plus"></i> В корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="lights-product-card" data-id="102">
+          <div class="lights-product-badge">Хит</div>
+          <div class="lights-product-image">
+            <img src="flash/f2.jpg" alt="Тактический фонарь Wizard Pro" />
+          </div>
+          <div class="lights-product-info">
+            <h3 class="lights-product-name" data-i18n="lights_product2_name">
+              ARMYTEK Wizard Pro
+            </h3>
+            <div class="lights-product-specs">
+              <span class="lights-spec-power" data-i18n="lights_product2_power">
+                Мощность: 2300 люмен
+              </span>
+              <span class="lights-spec-reviews">Отзывы: 56</span>
+            </div>
+            <div class="lights-product-rating">
+              <div class="lights-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="lights-rating-value">5.0</span>
+            </div>
+            <div class="lights-product-price-row">
+              <div class="lights-price">
+                <span class="lights-current-price">9 500 ₽</span>
+              </div>
+              <button class="lights-wishlist-btn" data-id="102">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <button
+              class="lights-add-to-cart"
+              data-id="102"
+              data-i18n="add_to_cart"
+            >
+              <i class="fas fa-cart-plus"></i> В корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="lights-product-card" data-id="103">
+          <div class="lights-product-badge">Скидка</div>
+          <div class="lights-product-image">
+            <img src="flash/f3.jpg" alt="Тактический фонарь Dobermann Pro" />
+          </div>
+          <div class="lights-product-info">
+            <h3 class="lights-product-name" data-i18n="lights_product3_name">
+              ARMYTEK Dobermann Pro
+            </h3>
+            <div class="lights-product-specs">
+              <span class="lights-spec-power" data-i18n="lights_product3_power">
+                Мощность: 1450 люмен
+              </span>
+              <span class="lights-spec-reviews">Отзывы: 38</span>
+            </div>
+            <div class="lights-product-rating">
+              <div class="lights-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="lights-rating-value">4.0</span>
+            </div>
+            <div class="lights-product-price-row">
+              <div class="lights-price">
+                <span class="lights-current-price">6 800 ₽</span>
+                <span class="lights-old-price">8 300 ₽</span>
+              </div>
+              <button class="lights-wishlist-btn" data-id="103">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <button
+              class="lights-add-to-cart"
+              data-id="103"
+              data-i18n="add_to_cart"
+            >
+              <i class="fas fa-cart-plus"></i> В корзину
+            </button>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="lights-product-card" data-id="104">
+          <div class="lights-product-badge">Популярный</div>
+          <div class="lights-product-image">
+            <img src="flash/f4.png" alt="Тактический фонарь Barracuda Pro" />
+          </div>
+          <div class="lights-product-info">
+            <h3 class="lights-product-name" data-i18n="lights_product4_name">
+              ARMYTEK Barracuda Pro
+            </h3>
+            <div class="lights-product-specs">
+              <span class="lights-spec-power" data-i18n="lights_product4_power">
+                Мощность: 1850 люмен
+              </span>
+              <span class="lights-spec-reviews">Отзывы: 47</span>
+            </div>
+            <div class="lights-product-rating">
+              <div class="lights-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="lights-rating-value">4.6</span>
+            </div>
+            <div class="lights-product-price-row">
+              <div class="lights-price">
+                <span class="lights-current-price">7 900 ₽</span>
+              </div>
+              <button class="lights-wishlist-btn" data-id="104">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+            <button
+              class="lights-add-to-cart"
+              data-id="104"
+              data-i18n="add_to_cart"
+            >
+              <i class="fas fa-cart-plus"></i> В корзину
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==== bottom banner ==== -->
+    <div class="bottom-banner">
+      <h1>Златоустовские ножи интернет-магазин "ЗЛАТМАКС"</h1>
+      <p>
+        Наш интернет-магазин "ЗЛАТМАКС" предлагает Вам ножи очень высокого
+        качества из города оружейников - Златоуста. Златоустовские ножи известны
+        и популярны среди потребителей как на российским рынке, так и за
+        рубежом: ножи охотничьи, хозяйственные, туристические, рыбацкие,
+        складные и метательные. Нож Златоуста - это идеальный друг и товарищ в
+        повседневной жизни и в экстремальных ситуациях. На многую продукцию
+        распространяется гарантия до 10 лет - это один из главных показателей
+        качества. Для Вас на нашем сайте "zlatmax" предложен огромный
+        ассортимент Златоустовских ножей. Наши менеджеры помогут определиться и
+        подобрать самый лучший Златоустовский нож, ориентируясь на Ваши
+        пожелания.
+      </p>
+    </div>
+
+    <!-- ==== FOOTER ==== -->
+    <footer class="footer" id="contacts">
+      <div class="footer-container">
+        <!-- Лого и описание -->
+        <div class="footer-section">
+          <div class="footer-logo">
+            <h2>ZLATMAX</h2>
+            <p class="footer-description" data-i18n="footer_description">
+              Интернет-магазин сертифицированных златоустовских ножей и
+              тактических фонарей. Официальный поставщик качественных товаров
+              для охоты, туризма и профессионального использования.
+            </p>
+          </div>
+          <div class="social-links">
+            <a
+              href="https://vk.com/zlatmax"
+              class="social-link"
+              target="_blank"
+            >
+              <i class="fab fa-vk"></i>
+            </a>
+            <a href="https://t.me/zlatmax" class="social-link" target="_blank">
+              <i class="fab fa-telegram"></i>
+            </a>
+            <a
+              href="https://instagram.com/zlatmax"
+              class="social-link"
+              target="_blank"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://youtube.com/zlatmax"
+              class="social-link"
+              target="_blank"
+            >
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Категории -->
+        <div class="footer-section">
+          <h3 class="footer-title" data-i18n="footer_categories">Категории</h3>
+          <ul class="footer-links">
+            <li>
+              <a href="#catalog" data-i18n="catalog_knives">Каталог ножей</a>
+            </li>
+            <li>
+              <a href="#bladed-weapons" data-i18n="bladed_weapons"
+                >Клинковое оружие</a
+              >
+            </li>
+            <li>
+              <a href="#armytek" data-i18n="armytek_flashlight"
+                >Фонарик ARMYTEK</a
+              >
+            </li>
+            <li>
+              <a href="#accessories" data-i18n="related_products"
+                >Сопутствующие товары</a
+              >
+            </li>
+            <li>
+              <a href="#knife-accessories" data-i18n="footer_knife_accessories"
+                >Аксессуары для ножей</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Информация -->
+        <div class="footer-section">
+          <h3 class="footer-title" data-i18n="footer_info">Информация</h3>
+          <ul class="footer-links">
+            <li><a href="#about" data-i18n="about">О нас</a></li>
+            <li>
+              <a href="#payment" data-i18n="payment">Оплата и доставка</a>
+            </li>
+            <li>
+              <a href="/guarantee" data-i18n="footer_guarantee"
+                >Гарантия и возврат</a
+              >
+            </li>
+            <li>
+              <a href="#contacts" data-i18n="footer_contacts"
+                >Контакты и адреса</a
+              >
+            </li>
+            <li>
+              <a href="/wholesale" data-i18n="footer_wholesale"
+                >Оптовым покупателям</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Контакты -->
+        <div class="footer-section">
+          <h3 class="footer-title" data-i18n="contacts">Контакты</h3>
+          <div class="footer-contacts">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span data-i18n="footer_address">Москва, ул. Оружейная, 15</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <a href="mailto:info@zlatmax.ru">info@zlatmax.ru</a>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-clock"></i>
+              <span data-i18n="footer_hours">Ежедневно 9:00 - 21:00</span>
+            </div>
+          </div>
+          <div class="payment-methods">
+            <div class="payment-icon">VISA</div>
+            <div class="payment-icon">MasterCard</div>
+            <div class="payment-icon">МИР</div>
+            <div class="payment-icon">QIWI</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Нижняя часть футера -->
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <p class="copyright">
+            &copy; 2024 ZLATMAX.
+            <span data-i18n="footer_rights">Все права защищены.</span>
+          </p>
+          <div class="footer-bottom-links">
+            <a href="/privacy-policy" data-i18n="footer_privacy"
+              >Политика конфиденциальности</a
+            >
+            <a href="/terms-of-use" data-i18n="footer_terms"
+              >Пользовательское соглашение</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="knife.js"></script>
+  </body>
+</html>
