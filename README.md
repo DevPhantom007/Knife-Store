@@ -8,9 +8,9 @@
 - CSS3
 - JavaScript
 
-
 ## 🔗 Live Demo
 [Այցելել Knife Store](https://devphantom007.github.io/Knife-Store/)
+
 
 ## 📝 Լիցենզիա
 MIT License
